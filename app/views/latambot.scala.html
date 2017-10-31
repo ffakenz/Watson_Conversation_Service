@@ -1,0 +1,19 @@
+@(conversationForm: Form[ConversationData])(implicit request: RequestHeader,  messages: Messages)
+
+@main("IBM Lightbend Chatbot Conversation") {
+
+    @helper.form(action = routes.HomeController.conversation()) {
+
+        <h1>Language Translator</h1>
+
+        @helper.inputText(conversationForm("payload"),'_label->"Payload")
+
+        <button type="submit">Translate</button>
+
+        <br/>
+
+        @request.flash.data.map{ case (name, value) =>
+            <div>@name:  @value</div>
+        }
+    }
+}
